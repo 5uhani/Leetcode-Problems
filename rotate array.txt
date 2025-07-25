@@ -1,0 +1,22 @@
+class Solution {
+public:
+    void rotate(std::vector<int>& nums, int k) {
+        int n = nums.size();
+        if (n <= 1) {
+            return;
+        }
+        k = k % n;
+        // Create a temporary vector of the same size
+        std::vector<int> temp(n);
+        // Copy the last k elements to the beginning of temp
+        for (int i = 0; i < k; ++i) {
+            temp[i] = nums[n - k + i];
+        }
+        // Copy the first n-k elements to the rest of temp
+        for (int i = 0; i < n - k; ++i) {
+            temp[k + i] = nums[i];
+        }
+        // Copy the elements from temp back to nums
+        nums = temp;
+    }
+};
