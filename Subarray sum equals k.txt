@@ -1,0 +1,24 @@
+#include <vector>
+#include <unordered_map>
+using namespace std;
+
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        unordered_map<int, int> prefixSumFreq;
+        prefixSumFreq[0] = 1;
+        int currentSum = 0;
+        int count = 0;
+        
+        for (int num : nums) {
+            currentSum += num;
+            int complement = currentSum - k;
+            if (prefixSumFreq.find(complement) != prefixSumFreq.end()) {
+                count += prefixSumFreq[complement];
+            }
+            prefixSumFreq[currentSum]++;
+        }
+        
+        return count;
+    }
+};
