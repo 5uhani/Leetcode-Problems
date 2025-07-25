@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        if (prices.empty()) {
+            return 0;
+        }
+        int minPrice = prices[0]; // Initialize minPrice with the first day's price
+        int maxProfit = 0;       
+        // Iterate through the prices starting from the second day
+        for (int i = 1; i < prices.size(); ++i) {
+            if (prices[i] < minPrice) {
+                minPrice = prices[i];
+            } else {
+                //after checking for 1 value maxProfit will have some value so comparing with that
+                maxProfit = std::max (maxProfit, prices[i] - minPrice);
+            }
+        }
+        return maxProfit;
+    }
+};
