@@ -1,0 +1,20 @@
+#include <vector>
+//#include <algorithm> // For std::max
+
+class Solution {
+public:
+    int maxSubArray(std::vector<int>& nums) {
+        int current_max = nums[0]; // Maximum sum ending at current position
+        int global_max = nums[0];  // Overall maximum sum found so far
+
+        for (int i = 1; i < nums.size(); i++) {
+            // Option 1: Start a new subarray with nums[i]
+            // Option 2: Extend the previous subarray by adding nums[i]
+            current_max = std::max(nums[i], current_max + nums[i]);
+
+            // Update the overall maximum sum
+            global_max = std::max(global_max, current_max);
+        }
+        return global_max;
+    }
+};
